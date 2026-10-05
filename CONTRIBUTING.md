@@ -23,6 +23,7 @@
 
 ## 审阅与发布
 
+- 分支命名、中文提交信息、提交范围核对及 PR、合并流程见 [Git 工作流技能](.agents/skills/software-handbook-git-workflow/SKILL.md)。
 - 默认在工作分支上完成改动，通过 Pull Request 审阅。
 - 提交与 PR 说明应写明改动目的、资料来源、验证结果和待确认事项。
 - 检查 Markdown 链接、图片路径、命令和渲染结果；涉及网站配置时，同时验证构建与页面显示。

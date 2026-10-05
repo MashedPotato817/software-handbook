@@ -29,6 +29,7 @@
 
 ## Git 与交付
 
+- 涉及分支、提交、推送、PR、合并或回滚时，先阅读并遵循 [本仓库 Git 工作流技能](.agents/skills/software-handbook-git-workflow/SKILL.md)。
 - 默认通过工作分支、可审查提交和 Pull Request 协作。
 - 提交、推送、发布和合并按用户明确授权执行；不要强推或改写他人历史。
 - 完成改动后简要列出修改文件、修改原因、验证结果和推荐的下一条 Git 命令。
