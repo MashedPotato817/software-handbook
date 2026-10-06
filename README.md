@@ -1,12 +1,12 @@
 # 软件与工具使用手册
 
-面向需要安装软件、配置工具或学习平台使用方法的 **PC新手读者**，整理中文安装与入门指南。
+面向需要安装软件、配置工具或学习平台使用方法的 **PC 新手读者**，整理中文安装与入门指南。
 
-内容范围包括 **工科软件** 、**开发工具** 和 **AI工具** 三大类。
+内容范围包括 **常用与专业软件**、**开发工具与平台** 和 **AI 工具** 三大类。
 
-- **工科软件**：包括但不限于 **Office**、**Adobe** 等办公软件的安装和激活，以及 **AutoCAD**、**draw.io**、**Keil**、**MATLAB** 等专业软件的安装和激活。
-- **开发工具**：包括但不限于 **Visual Studio Code**、**PyCharm** 等代码编辑器。
-- **AI工具**：包括但不限于 **DeepSeek Harness**、**Git**、**OpenCode**、**Codex**、**Claude Code**、**npm**，以及 **GitHub** 等平台的使用方法，并可按实际需求扩展。
+- **常用与专业软件**：包括但不限于 **Office**、**Adobe** 等常用软件的安装和激活，以及 **AutoCAD**、**draw.io**、**Keil**、**MATLAB** 等专业软件的安装和激活。
+- **开发工具与平台**：包括但不限于 **Visual Studio Code**、**PyCharm** 等代码编辑器与集成开发环境，以及 **Git**、**npm** 等开发工具和 **GitHub** 等平台的使用方法。
+- **AI 工具**：包括但不限于 **DeepSeek Harness**、**OpenCode**、**Codex**、**Claude Code** 等 AI 工具的使用方法，并可按实际需求扩展。
 
 ## 当前状态
 
@@ -29,6 +29,6 @@
 
 贡献前请阅读 [贡献说明](CONTRIBUTING.md)。使用 AI 协作时同时遵循 [协作约定](AGENTS.md)。
 
-## Lisense
+## 许可证
 
-MIT LISENSE
+MIT License
