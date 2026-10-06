@@ -22,6 +22,7 @@
 - GitHub Pages 用于提供公开阅读入口。
 - Pages 计划采用 Jekyll，从正式主线 `main` 的根目录发布；首页按三大类导航，教程按软件或平台、主题组织。
 - 当前测试在 `docs/git-install-draft` 分支进行，Pages 从该分支根目录发布；测试内容经确认后再按授权合并到 `main` 并切换发布来源。
+- 正在本地试改紧凑文档布局：左侧分类导航、中间正文、右侧自动文章目录；尚未部署这一版。正文继续使用 Markdown，文章目录根据二、三级标题生成。新增工具时在其 `index.md` 的 YAML 头部填写 `title` 与三大类之一的 `category`，已有主题会自动进入侧栏；首页入口仍在根目录 `index.md` 中维护。
 - 飞书文档作为另一阅读入口；初期手动发布定稿，正文修改统一回到 Markdown。
 - Pages 测试站点已发布：[测试阅读入口](https://mashedpotato817.github.io/software-handbook/)。构建、首页、教程链接和主题样式访问已验证；页面外观与手机排版待人工查看，教程安装流程仍待人工验证。飞书的实际发布地址尚未提供。
 
@@ -32,7 +33,8 @@
 - `CONTRIBUTING.md`：内容贡献和审阅方式。
 - `pages/`：教程正文，按软件或平台建立目录，再按主题拆分 Markdown 文档；有实际内容时再创建对应文件。
 - 根目录 `index.md`：面向读者的三大类导航首页。
-- `_config.yml`：Jekyll 主题、站点路径和 Markdown 页面配置。
+- `_config.yml`：Jekyll 站点路径、Markdown 页面配置及发布排除项。
+- `_layouts/default.html`、`assets/css/site.css`、`assets/js/navigation.js`：共用阅读布局、响应式样式与自动文章目录，不参与教程正文编写。
 
 ## 参与贡献
 
