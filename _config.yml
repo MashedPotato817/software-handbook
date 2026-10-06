@@ -1,0 +1,20 @@
+title: 软件与工具使用手册
+description: 给 PC 新手的中文安装、配置与入门指南
+lang: zh-CN
+url: https://mashedpotato817.github.io
+baseurl: /software-handbook
+
+plugins:
+  - jekyll-relative-links
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+exclude:
+  - README.md
+  - AGENTS.md
+  - CONTRIBUTING.md
+  - tmp

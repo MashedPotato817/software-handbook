@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'zh-CN' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% assign document_title = content | split: '</h1>' | first | strip_html | strip %}
+  <title>{{ page.title | default: document_title | escape }} · {{ site.title | escape }}</title>
+  <meta name="description" content="{{ site.description | escape }}">
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+  <script src="{{ '/assets/js/navigation.js' | relative_url }}" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到正文</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
+      <span class="preview-label">测试预览</span>
+      <a class="repository-link" href="https://github.com/MashedPotato817/software-handbook">GitHub 仓库 ↗</a>
+    </div>
+  </header>
+  <div class="reading-layout">
+    <aside class="sidebar" aria-label="教程导航">
+      <div class="navigation">
+        <p class="navigation-title">教程导航</p>
+        <nav>
+          <a class="home-link{% if page.url == '/' %} is-current{% endif %}" href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>阅读首页</a>
+          {% assign categories = '常用与专业软件|开发工具与平台|AI 工具' | split: '|' %}
+          {% assign tools = site.pages | where: 'name', 'index.md' | sort: 'path' %}
+          {% assign current_tool = tools | where: 'dir', page.dir | first %}
+          {% assign current_category = page.category | default: current_tool.category %}
+          {% for category in categories %}
+          {% assign category_tools = tools | where: 'category', category %}
+          {% assign category_open = false %}
+          {% if page.url == '/' and category_tools.size > 0 %}
+            {% assign category_open = true %}
+          {% elsif current_category == category %}
+            {% assign category_open = true %}
+          {% endif %}
+          <details class="navigation-group"{% if category_open %} open{% endif %}>
+            <summary class="category-toggle">{{ category }}</summary>
+            {% if category_tools.size == 0 %}
+            <p class="navigation-empty">暂无教程</p>
+            {% else %}
+            <ul>
+              {% for tool in category_tools %}
+              <li>
+                <a class="tool-link" href="{{ tool.url | relative_url }}"{% if page.url == tool.url %} aria-current="page"{% endif %}>{{ tool.title | escape }}</a>
+                {% assign topics = site.pages | where: 'dir', tool.dir | sort: 'path' %}
+                <ul class="topic-list">
+                  {% for topic in topics %}
+                  {% unless topic.name == 'index.md' %}
+                  {% assign topic_title = topic.content | newline_to_br | split: '<br />' | first | remove: '# ' | strip %}
+                  <li><a href="{{ topic.url | relative_url }}"{% if page.url == topic.url %} aria-current="page"{% endif %}>{{ topic.title | default: topic_title | escape }}</a></li>
+                  {% endunless %}
+                  {% endfor %}
+                </ul>
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </details>
+          {% endfor %}
+        </nav>
+      </div>
+    </aside>
+    <main id="main-content" class="main-content" tabindex="-1">
+      <div class="breadcrumb"><a href="{{ '/' | relative_url }}">阅读首页</a>{% unless page.url == '/' %}<span> / {{ page.title | default: document_title | escape }}</span>{% endunless %}</div>
+      <article class="markdown-body">{{ content }}</article>
+      <footer class="page-footer">本地 Markdown 原稿 · 教程验证状态以文中说明为准</footer>
+    </main>
+    <aside class="toc" aria-label="本文目录" hidden>
+      <p class="toc-title">本文目录</p>
+      <nav id="article-toc"></nav>
+    </aside>
+  </div>
+</body>
+</html>
