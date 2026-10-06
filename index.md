@@ -27,6 +27,6 @@ AI 工具的安装、必要配置与入门指南。目前暂无教程。
 
 ## 参与完善
 
-遇到问题或想补充内容，可以到 [GitHub 仓库](https://github.com/MashedPotato817/software-handbook)反馈；贡献前请阅读 [贡献说明](https://github.com/MashedPotato817/software-handbook/blob/docs/git-install-draft/CONTRIBUTING.md)。
+遇到问题或想补充内容，可以到 [GitHub 仓库](https://github.com/MashedPotato817/software-handbook)反馈；贡献前请阅读 [贡献说明](https://github.com/MashedPotato817/software-handbook/blob/main/CONTRIBUTING.md)。
 
 飞书阅读入口将在实际发布后补充。
