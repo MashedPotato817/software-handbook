@@ -1,0 +1,64 @@
+name: Commit messages
+
+on:
+  # 始终运行主线上的检查器，避免 PR 修改自己的检查规则。
+  pull_request_target:
+    branches: [main]
+    types: [opened, reopened, synchronize, edited, ready_for_review, converted_to_draft]
+
+permissions:
+  pull-requests: read
+
+concurrency:
+  group: commit-messages-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  commit-messages:
+    name: commit-messages
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: 检查 PR 中的提交信息
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const commits = await github.paginate(github.rest.pulls.listCommits, {
+              ...context.repo,
+              pull_number: pr.number,
+              per_page: 100,
+            });
+            if (commits.length === 0 || commits.length !== pr.commits) {
+              core.setFailed('未取得完整的 PR 提交列表，请确认提交数量后重新检查。');
+              return;
+            }
+
+            const titlePattern = /^(docs|fix|feat|style|ci|chore|refactor|test|perf)(\([a-z][a-z0-9]*(?:-[a-z0-9]+)*\))?: (?<subject>\S.*)$/u;
+            const hasChinese = text => /\p{Script=Han}/u.test(text);
+            let invalid = 0;
+            for (const { sha, commit } of commits) {
+              const [title, ...body] = commit.message.split(/\r?\n/);
+              // 仓库规范允许原生 git revert 消息保持原样。
+              if (/^Revert ".+"$/.test(title) &&
+                  /^This reverts commit [0-9a-f]{40}[.,]/m.test(body.join('\n'))) {
+                continue;
+              }
+              const problems = [];
+              const match = title.match(titlePattern);
+              if (!match || !hasChinese(match.groups.subject)) {
+                problems.push('标题应为 <type>(<可选scope>): <中文主体>，scope 使用英文小写和短横线');
+              }
+              if (!body.some(line => /^-\s+\S/u.test(line) && hasChinese(line))) {
+                problems.push('正文应至少包含一条非空的中文 - 分点说明');
+              }
+              if (problems.length) {
+                invalid++;
+                core.error(`${sha.slice(0, 7)} ${title}：${problems.join('；')}`);
+              }
+            }
+            if (invalid) {
+              core.setFailed(`${invalid} 条提交信息不符合规范，请整理这些提交后重新提交 PR。`);
+            } else {
+              core.info(`已检查 ${commits.length} 条提交，提交信息格式全部通过。`);
+            }
