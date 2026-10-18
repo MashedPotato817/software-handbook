@@ -44,3 +44,30 @@
 - 检查 Markdown 链接、图片路径、命令和渲染结果；涉及网站配置时，同时验证构建与页面显示。
 - 本地 Markdown 是权威原稿。飞书文档先手动发布定稿，正文修订统一回到原稿。
 - 发布配置、公开链接和实际发布结果确认后，再更新 README 中的阅读入口。
+
+### 提交信息自动检查
+
+面向 `main` 的 PR 使用主线上的 `commit-messages` 检查逐条核对本次 PR 中的提交，不追溯主线已有历史：
+
+- 标题使用 `<type>(<可选scope>): <中文主体>`；type 为 `docs`、`fix`、`feat`、`style`、`ci`、`chore`、`refactor`、`test` 或 `perf`，scope 使用英文小写、数字和短横线，例如 `git-workflow`。
+- 标题主体需包含中文；正文至少有一条非空的中文 `-` 分点。来源、实际验证和待确认事项仍需按上面的要求如实说明，由维护者审阅。
+- 原生 `git revert` 生成的 `Revert "…"` 标题及回滚正文允许保持原样。
+- PR 更新提交或编辑说明后会重新检查。不合规时，查看 Actions 中列出的提交编号和原因；仅追加合规提交不会修正此前不合规的提交。
+
+示例：
+
+```text
+docs(codex): 补充 Windows 安装说明
+
+- 根据官方资料修正安装入口；尚未进行人工安装验证
+```
+
+PR 正文应包含改动目的、资料来源、验证结果和待确认事项；未定稿时使用 Draft PR。这些内容由人工审阅，提交信息格式检查不能代替内容与安装验证。维护者需将 `commit-messages` 配置为 `main` 的必需检查，才能在检查失败时阻止合并。
+
+工作流使用 `pull_request_target`，仅通过只读 API 获取提交信息，不检出或执行 PR 代码。维护者还需在 GitHub Actions 的事件策略中允许此工作流使用 `pull_request_target`；GitHub 对公开仓库的默认限制见[官方说明](https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target)。
+
+修改检查规则后，可使用 Node.js 24 运行回归验证，无需安装额外依赖：
+
+```powershell
+node --test .github/tests/commit-messages.test.cjs
+```
