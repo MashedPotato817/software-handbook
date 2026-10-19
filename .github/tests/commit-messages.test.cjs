@@ -52,6 +52,28 @@ test('requires a nonempty Chinese bullet in the commit body', async () => {
   }
 });
 
+test('explains that a Chinese title with no commit body is not a title-language failure', async () => {
+  const result = await check(['docs(codex): 新增 Windows 安装与首次使用试写稿']);
+  assert.equal(result.failures.length, 1);
+  assert.equal(result.errors.length, 1);
+  assert.match(result.errors[0], /提交正文为空/);
+  assert.doesNotMatch(result.errors[0], /标题应|标题主体/);
+  assert.match(result.failures[0], /不是 PR 说明/);
+  assert.match(result.failures[0], /无需关闭或新建 PR/);
+});
+
+test('distinguishes title format, title language and body format errors', async () => {
+  const format = await check(['更新教程\n\n- 已核对资料']);
+  assert.match(format.errors[0], /标题格式不符/);
+  assert.doesNotMatch(format.errors[0], /标题主体缺少中文|提交正文/);
+  const language = await check(['docs: update handbook\n\n- 已核对资料']);
+  assert.match(language.errors[0], /标题主体缺少中文/);
+  assert.doesNotMatch(language.errors[0], /标题格式不符|提交正文/);
+  const body = await check(['docs: 更新教程\n\n已核对资料']);
+  assert.match(body.errors[0], /提交正文格式不符/);
+  assert.doesNotMatch(body.errors[0], /提交正文为空|标题/);
+});
+
 test('preserves native git revert messages, including merge reverts', async () => {
   for (const ending of ['.', ', reversing\nchanges made to ' + 'b'.repeat(40) + '.']) {
     const result = await check([`Revert "docs: 更新教程"\n\nThis reverts commit ${'a'.repeat(40)}${ending}`]);

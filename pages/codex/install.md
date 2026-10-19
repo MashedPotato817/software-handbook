@@ -1,73 +1,74 @@
 # Codex / ChatGPT：Windows 安装与首次使用
 
-> 状态：依据维护者提供的信息整理，安装流程和 CC Switch 配置尚待实际验证。
-> Edit BY HGXdev
-> 适用环境：Windows 10 / 11；网络环境需能正常访问 OpenAI 服务。
+> 状态：试写稿。已于 2026-10-19 核对下方官方资料；尚未在新设备上按本文完成安装、登录和首次使用验证。
+>
+> 适用环境：Windows，具体系统版本与设备要求以官方安装页面为准；最低系统构建号尚待人工核对。
+>
+> 初稿：HGXdev；维护者依据官方资料修订。
 
 ## 引言
 
-Codex 和 ChatGPT 都是 OpenAI 的产品。Codex 偏向在项目中完成编程任务，ChatGPT 偏向日常对话，目前两者已经融合在同一个软件里，不需要分别安装。
+本篇介绍 ChatGPT 桌面应用的官方安装与账号登录路径。应用中可以选择 ChatGPT 进行对话，也可以选择 Codex 处理开发任务；桌面应用入口与 Codex CLI、IDE 扩展应区分。
 
-本篇完成三件事：下载并安装客户端、准备网络环境、选择一种方式完成首次配置。
+目标是完成安装、登录，再分别检查需要使用的功能。本篇不涉及第三方模型服务或 CC Switch 配置。
 
 ## 正文
 
-### 1. 下载安装包
+### 1. 准备环境
 
-打开 [Codex / ChatGPT 安装包下载页](https://hgxhome.lanzoub.com/iyG4c4cgmlvc)，在页面中输入提取码 `fapk`，然后下载安装包。
+- 确认设备满足官方安装页面列出的系统要求。
+- 准备可登录的 ChatGPT 账号；尚无账号时按官方登录页面提示注册。
+- 确认网络可以访问官方安装入口与 OpenAI 服务。安装下载和应用登录使用的服务不同，应分别检查访问情况。
 
-这个下载入口由维护者提供，方便国内网络访问，不是 OpenAI 官方下载页。
+### 2. 从官方入口安装
 
-### 2. 通过 Microsoft Store 安装
+打开 [OpenAI 官方 Windows 应用说明](https://learn.chatgpt.com/docs/windows/windows-app)，点击其中的 Windows 下载入口，运行下载的安装程序并按提示完成安装。需要管理员批准或 Microsoft 账号时，按实际安装提示处理。
 
-下载完成后，双击运行安装包。安装程序会自动调出 Microsoft Store，请在商店页面按提示完成安装。
+根据[官方 Windows 部署说明](https://learn.chatgpt.com/docs/enterprise/windows-deployment)，安装或更新时可能出现 Microsoft Store 组件，但用户无需自行浏览商店。具体流程以安装提示为准，是否打开商店不作为安装成功的判断条件。
 
-由于 OpenAI 的安装限制，这个安装包不能直接在本机完成安装，而是会交给 Microsoft Store 继续处理。这是正常流程，不是安装包损坏。
+如果已经使用 Windows 的 `winget`，也可以在 PowerShell 中运行官方文档提供的命令；它与上面的下载安装路径任选一种即可：
 
-如果 Microsoft Store 要求登录 Microsoft 账号，按页面提示登录后再继续。
+```powershell
+winget install --id 9PLM9XGG6VKS -s msstore
+```
 
-如果 Microsoft Store 无法打开或下载失败，先检查网络连接，再重新双击安装包。
+按实际提示完成后，从开始菜单打开应用。下载入口和更新信息以官方页面为准。
 
-### 3. 准备网络环境
+### 3. 登录并选择功能
 
-安装完成后，先打开你平时使用的科学上网工具，确认网络能够正常访问 OpenAI 服务，再启动 Codex / ChatGPT。
+1. 打开应用，按界面提示登录 ChatGPT 账号。
+2. 如需普通问答，选择 ChatGPT，再选择 Chat。
+3. 如需开发任务，从 ChatGPT 下拉菜单中选择 Codex。按官方快速开始的流程创建项目或打开文件夹，让任务有明确的工作位置。
 
-如果所在网络可以直接访问 OpenAI 服务，可以跳过这一步。启动后如果一直无法登录或加载失败，先检查科学上网工具是否已经生效，再重试。
+上述入口依据[官方快速开始](https://learn.chatgpt.com/docs/quickstart?setup=app)整理，界面名称可能随版本变化。若当前账号或客户端没有对应入口，先记录应用版本、界面和提示，再对照官方资料核对；不要直接判断为安装失败。
 
-如果无法科学上网，可以使用CC switch进行尝试
+### 4. 验证
 
-### 4. 完成首次配置
+安装与登录完成后，按实际要使用的功能检查：
 
-安装并启动软件后，可以从下面两种方式中任选一种。
+| 检查对象 | 操作 | 预期结果 |
+| --- | --- | --- |
+| 应用与账号 | 从开始菜单打开应用并完成登录 | 应用正常打开，能够进入新对话界面 |
+| ChatGPT 对话 | 选择 ChatGPT → Chat，发送“请用一句话介绍你能做什么” | 收到正常文字回复 |
+| Codex 开发任务 | 选择 Codex，打开一个测试文件夹，发送“只列出当前文件夹中的文件；若为空就说明为空，不要修改文件” | 返回与目录内容相符的结果，目录内容未被修改 |
 
-#### 方式一：注册 ChatGPT 账号
+只使用 ChatGPT 时，完成前两项即可；需要 Codex 时，再完成第三项。能够打开应用不等于登录或任务执行成功。
 
-在登录界面选择注册或登录 ChatGPT 账号，按页面提示填写邮箱、完成验证并登录。
+验证后请记录 Windows 版本、应用版本、验证日期、实际使用的功能和结果。本文当前没有这些人工复现记录，不能据此认定安装流程已经验证。
 
-#### 方式二：使用 CC Switch
+### 5. 遇到问题时
 
-CC Switch 可以更换 Codex 使用的模型服务，也就是更换 Codex 的“大脑”。配置完成后，可以不注册 ChatGPT 账号直接使用 Codex。
-
-CC Switch 的安装、添加配置和切换方法，请在 CC Switch 软件内查看教程，本文不重复展开。
-
-### 5. 验证
-
-完成配置后，启动 Codex / ChatGPT，并检查：
-
-- 使用 ChatGPT 账号时，界面显示已登录。
-- 使用 CC Switch 时，已选中要使用的配置。
-- 发送一条简单的测试消息或任务，能够正常得到回复。
-
-三项都正常，说明安装和首次配置已完成。如果一直转圈、提示网络错误或登录失败，先检查科学上网工具，再按第 4 步重新确认账号或 CC Switch 配置。
+- **安装下载失败**：记录安装入口、错误提示和时间，检查该下载入口及 Microsoft 分发服务是否可访问。
+- **登录或加载失败**：检查账号提示和 OpenAI 服务访问情况；保留错误信息，区分账号、网络与安装问题。
+- **Codex 任务未成功**：确认选择了 Codex 和正确的测试文件夹，检查任务记录中的提示。普通聊天回复不能替代 Codex 任务验证。
 
 ## 参考资料
 
-- [ChatGPT 官方网站](https://chatgpt.com/)：了解 ChatGPT 并查看官方入口。
-- [OpenAI Codex 介绍页](https://openai.com/codex/)：了解 Codex 的功能和官方说明。
+- [OpenAI：Windows 桌面应用](https://learn.chatgpt.com/docs/windows/windows-app)：官方安装入口、Windows 使用说明与可选的 winget 命令。
+- [OpenAI：快速开始](https://learn.chatgpt.com/docs/quickstart?setup=app)：账号登录、ChatGPT / Codex 功能选择和首次任务。
+- [OpenAI：Windows 部署说明](https://learn.chatgpt.com/docs/enterprise/windows-deployment)：安装方式与 Microsoft Store 组件说明。
 
 ## 简单注释
 
-- **Codex 和 ChatGPT 的区别**：Codex 更偏向项目中的编程任务，ChatGPT 更偏向日常问答；本篇安装的客户端已经整合两者。
-- **安装包来源**：网盘链接由HGXdev提供，不是 OpenAI 官方下载地址。下载页只需输入提取码，不需要填写 ChatGPT 账号或密码。
-- **科学上网工具**：需要读者自行准备可用的工具，本手册不提供相关服务。
-- **CC Switch**：本文只说明它可用于更换 Codex 的模型服务，具体操作以 CC Switch 软件内教程为准。
+- **ChatGPT 账号**：本篇采用官方账号登录流程；其他认证或第三方服务配置不在本文范围内。
+- **待验证**：资料核对、链接检查和站点构建不等于实际完成软件安装或任务执行。

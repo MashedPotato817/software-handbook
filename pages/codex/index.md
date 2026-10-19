@@ -1,13 +1,15 @@
 ---
 title: Codex / ChatGPT
 category: AI 工具
-author: HGXdev  (hgxdev.com)
+author: HGXdev
 ---
-> Edit BY HGXdev (hgxdev.com)
+
 # Codex / ChatGPT
 
-Codex 是 OpenAI 提供的编程智能体，可以在项目中读取文件、运行命令和修改代码；ChatGPT 是通用的对话助手，适合问答、写作和资料整理。两者已经整合在同一个客户端中，安装一个软件即可使用。
+Codex 是 OpenAI 提供的编程智能体，适合处理项目中的代码和开发任务；ChatGPT 适合问答、写作和资料整理。目前的 ChatGPT 桌面应用提供 ChatGPT 和 Codex 入口，具体操作见[官方快速开始](https://learn.chatgpt.com/docs/quickstart?setup=app)。
+
+> 状态：教程试写稿，安装和首次使用流程待人工验证。初稿由 HGXdev 提供，维护者依据官方资料修订。
 
 ## 教程
 
-- [Windows 安装与首次使用](install.md)：下载客户端，通过 Microsoft Store 完成安装，并选择注册 ChatGPT 账号或使用 CC Switch 完成配置。
+- [Windows 安装与首次使用](install.md)：从官方入口安装桌面应用，使用 ChatGPT 账号登录，并检查 ChatGPT 与 Codex 的基本使用流程。
