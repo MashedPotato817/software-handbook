@@ -46,11 +46,15 @@ jobs:
               }
               const problems = [];
               const match = title.match(titlePattern);
-              if (!match || !hasChinese(match.groups.subject)) {
-                problems.push('标题应为 <type>(<可选scope>): <中文主体>，scope 使用英文小写和短横线');
+              if (!match) {
+                problems.push('提交标题格式不符：应为 <type>(<可选scope>): <中文主体>，type 使用允许的小写类型，scope 使用英文小写、数字和短横线');
+              } else if (!hasChinese(match.groups.subject)) {
+                problems.push('提交标题主体缺少中文：冒号后的说明需包含中文，产品名和命令可保留英文');
               }
-              if (!body.some(line => /^-\s+\S/u.test(line) && hasChinese(line))) {
-                problems.push('正文应至少包含一条非空的中文 - 分点说明');
+              if (!body.join('\n').trim()) {
+                problems.push('提交正文为空：标题下方需另起一段，至少填写一条中文 - 分点说明');
+              } else if (!body.some(line => /^-\s+\S/u.test(line) && hasChinese(line))) {
+                problems.push('提交正文格式不符：至少填写一条以 - 和空格开头、包含中文的非空分点');
               }
               if (problems.length) {
                 invalid++;
@@ -58,7 +62,7 @@ jobs:
               }
             }
             if (invalid) {
-              core.setFailed(`${invalid} 条提交信息不符合规范，请整理这些提交后重新提交 PR。`);
+              core.setFailed(`${invalid} 条 Git 提交信息不符合规范；检查对象是提交标题和提交正文，不是 PR 说明。请按上方提交编号修正后更新当前 PR，无需关闭或新建 PR。仅追加合规提交不能修复已有问题。示例：git commit -m "docs(codex): 更新安装说明" -m "- 根据官方资料修正步骤；安装尚未人工验证"。详见 CONTRIBUTING.md 的提交信息自动检查。`);
             } else {
               core.info(`已检查 ${commits.length} 条提交，提交信息格式全部通过。`);
             }
