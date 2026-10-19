@@ -12,7 +12,7 @@
 
 ## 当前状态
 
-项目处于框架建立和试写阶段，已有 [Git 的 Windows 安装草稿](pages/git/install.md) 和 [Codex / ChatGPT 的 Windows 安装草稿](pages/codex/install.md)，均待维护者修改和人工验证。上面列出的工具与平台是计划覆盖的范围，不表示对应教程已经完成。
+项目处于框架建立和试写阶段，已有 [Git 的 Windows 安装草稿](pages/git/install.md) 和 [Codex/ChatGPT 的 Windows 安装草稿](pages/codex/install.md)，均待维护者修改和人工验证。上面列出的工具与平台是计划覆盖的范围，不表示对应教程已经完成。
 
 先试写一篇教程，由维护者手动修改和反馈，再优化文档约定，最后确定是否用 skill 或 pipeline 固化工作流。
 

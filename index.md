@@ -27,7 +27,7 @@ AI 工具的安装、必要配置与入门指南。
 
 | 工具与用途 | 教程 | 适用系统 / 状态 |
 | --- | --- | --- |
-| [Codex / ChatGPT](pages/codex/index.md) · 编程智能体与对话助手 | [Windows 安装与首次使用](pages/codex/install.md) | Windows 10 / 11 · 待人工验证 |
+| [Codex / ChatGPT](pages/codex/index.md) · 编程智能体与对话助手 | [Windows 安装与首次使用](pages/codex/install.md) | Windows 10 / 11 · 待验证 |
 
 ## 参与完善
 

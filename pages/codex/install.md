@@ -1,7 +1,9 @@
 # Codex / ChatGPT：Windows 安装与首次使用
 
-> 状态：依据维护者提供的信息整理，安装流程和 CC Switch 配置尚待实际验证。
+> 状态： 依据维护者提供的信息整理，安装流程和 CC Switch 配置尚待实际验证。
+
 > Edit BY HGXdev
+
 > 适用环境：Windows 10 / 11；网络环境需能正常访问 OpenAI 服务。
 
 ## 引言
