@@ -12,7 +12,7 @@
 
 ## 当前状态
 
-项目处于框架建立和试写阶段，已有 [Git 的 Windows 安装草稿](pages/git/install.md) 和 [Codex / ChatGPT 的 Windows 安装草稿](pages/codex/install.md)，均待维护者修改和人工验证。上面列出的工具与平台是计划覆盖的范围，不表示对应教程已经完成。
+项目处于框架建立和试写阶段，已有 [Git 手册草稿](pages/git/index.md) 和 [Codex / ChatGPT 手册草稿](pages/codex/index.md)，目前均以 Windows 安装与入门为主，待维护者修改和人工验证。上面列出的工具与平台是计划覆盖的范围，不表示对应教程已经完成。
 
 先试写一篇教程，由维护者手动修改和反馈，再优化文档约定，最后确定是否用 skill 或 pipeline 固化工作流。
 
@@ -20,9 +20,9 @@
 
 - 本地 Markdown 是内容的权威原稿，GitHub 仓库用于保存版本和审阅改动。
 - GitHub Pages 用于提供公开阅读入口。
-- Pages 采用 Jekyll，从正式主线 `main` 的根目录发布；首页按三大类导航，教程按软件或平台、主题组织。
+- Pages 采用 Jekyll，从正式主线 `main` 的根目录发布；首页按三大类导航，每个工具或平台默认对应一个完整手册页面。
 - 仓库默认分支和 Pages 发布分支均为 `main`；后续修改在工作分支完成，经 PR 审阅合并到 `main` 后自动发布。
-- 已发布紧凑文档布局：左侧分类导航、中间正文、右侧自动文章目录。正文继续使用 Markdown，文章目录根据二、三级标题生成。新增工具时在其 `index.md` 的 YAML 头部填写 `title` 与三大类之一的 `category`，已有主题会自动进入侧栏；首页入口仍在根目录 `index.md` 中维护。
+- 现有紧凑文档布局包括左侧分类导航、中间正文、右侧自动文章目录。每个工具在侧栏保留一个入口，安装、配置、使用和验证通过页内二、三级标题组织。新增工具时将完整手册写入其 `index.md`，在 YAML 头部填写工具名称 `title` 与三大类之一的 `category`，并在根目录 `index.md` 中维护单个首页入口。
 - 飞书文档作为另一阅读入口；初期手动发布定稿，正文修改统一回到 Markdown。
 - Pages 阅读入口已发布：[在线阅读](https://mashedpotato817.github.io/software-handbook/)。`main` 的 Jekyll 构建、部署、首页导航、教程链接及 CSS、JS 资源访问已验证；初步页面预览已由维护者查看，完整手机排版和浏览器交互仍待人工验证，教程安装流程也仍待人工验证。飞书的实际发布地址尚未提供。
 
@@ -31,7 +31,7 @@
 - `README.md`：用途、范围、当前状态与阅读入口。
 - `AGENTS.md`：AI 协作边界与验证要求。
 - `CONTRIBUTING.md`：内容贡献和审阅方式。
-- `pages/`：教程正文，按软件或平台建立目录，再按主题拆分 Markdown 文档；有实际内容时再创建对应文件。
+- `pages/`：按软件或平台建立目录，完整手册默认放在各目录的 `index.md`；有实际内容时再创建对应文件。
 - 根目录 `index.md`：面向读者的三大类导航首页。
 - `_config.yml`：Jekyll 站点路径、Markdown 页面配置及发布排除项。
 - `_layouts/default.html`、`assets/css/site.css`、`assets/js/navigation.js`：共用阅读布局、响应式样式与自动文章目录，不参与教程正文编写。
