@@ -1,0 +1,4 @@
+interface:
+  display_name: "手册内容贡献工作流"
+  short_description: "为软件手册新增内容或补充章节，核对来源、验证状态与导航入口"
+  default_prompt: "使用 $software-handbook-content-workflow 为指定工具新增手册或补充章节，交付有来源和验证状态的草稿。"
