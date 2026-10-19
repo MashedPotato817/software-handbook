@@ -46,32 +46,30 @@ test('rejects missing type, invalid type/scope and English-only or empty subject
   }
 });
 
-test('requires a nonempty Chinese bullet in the commit body', async () => {
-  for (const body of ['', '\n\n- ', '\n\n- Add documentation', '\n\n补充安装步骤']) {
-    assert.equal((await check([`docs: 更新教程${body}`])).failures.length, 1, body);
+test('accepts absent or arbitrary commit bodies when the title is valid', async () => {
+  for (const body of ['', '\n\n  ', '\n\n- ', '\n\n- Add documentation', '\n\n补充安装步骤']) {
+    const result = await check([`docs: 更新教程${body}`]);
+    assert.equal(result.failures.length, 0, body);
+    assert.equal(result.errors.length, 0, body);
   }
 });
 
-test('explains that a Chinese title with no commit body is not a title-language failure', async () => {
+test('accepts the original PR #6 title without a commit body', async () => {
   const result = await check(['docs(codex): 新增 Windows 安装与首次使用试写稿']);
-  assert.equal(result.failures.length, 1);
-  assert.equal(result.errors.length, 1);
-  assert.match(result.errors[0], /提交正文为空/);
-  assert.doesNotMatch(result.errors[0], /标题应|标题主体/);
-  assert.match(result.failures[0], /不是 PR 说明/);
-  assert.match(result.failures[0], /无需关闭或新建 PR/);
+  assert.equal(result.failures.length, 0);
+  assert.equal(result.errors.length, 0);
 });
 
-test('distinguishes title format, title language and body format errors', async () => {
-  const format = await check(['更新教程\n\n- 已核对资料']);
+test('distinguishes title format and language errors without requiring a body', async () => {
+  const format = await check(['更新教程']);
   assert.match(format.errors[0], /标题格式不符/);
   assert.doesNotMatch(format.errors[0], /标题主体缺少中文|提交正文/);
-  const language = await check(['docs: update handbook\n\n- 已核对资料']);
+  const language = await check(['docs: update handbook']);
   assert.match(language.errors[0], /标题主体缺少中文/);
   assert.doesNotMatch(language.errors[0], /标题格式不符|提交正文/);
-  const body = await check(['docs: 更新教程\n\n已核对资料']);
-  assert.match(body.errors[0], /提交正文格式不符/);
-  assert.doesNotMatch(body.errors[0], /提交正文为空|标题/);
+  assert.match(language.failures[0], /检查对象是 Git 提交标题/);
+  assert.doesNotMatch(language.failures[0], /提交正文/);
+  assert.match(language.failures[0], /无需关闭或新建 PR/);
 });
 
 test('preserves native git revert messages, including merge reverts', async () => {
