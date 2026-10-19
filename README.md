@@ -14,7 +14,7 @@
 
 项目处于框架建立和试写阶段，已有 [Git 手册草稿](pages/git/index.md) 和 [Codex / ChatGPT 手册草稿](pages/codex/index.md)，目前均以 Windows 安装与入门为主，待维护者修改和人工验证。上面列出的工具与平台是计划覆盖的范围，不表示对应教程已经完成。
 
-先试写一篇教程，由维护者手动修改和反馈，再优化文档约定，最后确定是否用 skill 或 pipeline 固化工作流。
+新增手册或补充章节可使用项目级 [内容贡献工作流技能](.agents/skills/software-handbook-content-workflow/SKILL.md)，先形成带来源和验证状态的草稿，再由维护者审阅与人工验证；提交和发布按 [Git 工作流技能](.agents/skills/software-handbook-git-workflow/SKILL.md) 执行。
 
 ## 编写与发布
 
