@@ -5,51 +5,56 @@ category: 开发工具与平台
 
 # npm
 
-npm 用于安装和管理 JavaScript 项目需要的代码包。本篇安装随 Node.js 提供的 npm，并创建第一份项目说明文件。
+npm 用来安装软件包和命令行工具。本篇先安装 Node.js 和 npm，再以 DeepSeek Harness 为例安装、检查和启动一个工具。
 
-> 适用环境：Windows 11（64 位），首次安装 Node.js。本文为待人工验证的草稿，实际安装版本待补。
+> 适用环境：Windows 11，x64 或 ARM64。采用 Node.js 24 LTS；本文为面向国内网络的推荐路径，待人工验证。
 
-## 1. 下载 Node.js
+## 1. 下载并安装 Node.js
 
-1. 打开 [Node.js 官方下载页](https://nodejs.org/en/download)。
-2. 选择标有 **LTS** 的版本，即长期支持版本；系统选择 **Windows**。
-3. 在“设置 → 系统 → 关于”查看系统类型，按处理器选择 **x64** 或 **ARM64**。
-4. 下载 **Windows Installer (.msi)** 安装包。
+1. 打开 [Node.js 官方下载页](https://nodejs.org/en/download)，选择 **24 LTS**（长期支持版本）和 **Windows**。
+2. 在 Windows“设置 → 系统 → 关于”查看系统类型，选择 **x64** 或 **ARM64**，下载 **Windows Installer (.msi)**。
+3. 官网下载较慢时，可在 [npmmirror 的 Node.js 24 镜像目录](https://npmmirror.com/mirrors/node/latest-v24.x/)查找相同版本和架构的 `.msi` 文件。它是第三方镜像；若未同步官网所选版本，回到官网获取，不选择目录中的早期版本。
+4. 双击安装包，按提示安装，安装位置和组件保持默认。npm 会随 Node.js 一起安装。
 
-Node.js 是运行 JavaScript 程序的环境。npm 随它一起安装，不需要单独下载安装包。
+已有 Node.js 时先运行下一节的版本检查；不要直接覆盖原有开发环境。
 
-## 2. 安装并检查版本
+## 2. 检查版本
 
-1. 双击 `.msi` 文件，阅读许可协议并按提示安装；安装位置和组件保持默认。
-2. 完成后关闭旧终端，在开始菜单搜索并重新打开 **PowerShell**。
-3. 依次执行下面的命令：
+安装完成后，关闭旧终端，在开始菜单搜索并重新打开 **PowerShell**，依次运行：
 
 ```powershell
 node --version
 npm.cmd --version
 ```
 
-两条命令都应显示版本号。本文在 PowerShell 中统一使用 `npm.cmd`。
+第一条应显示 `v24.x.x`，第二条应显示 npm 版本号。本文使用 `npm.cmd`，避免 PowerShell 优先执行同名 `.ps1` 脚本。
 
-若提示找不到命令，先确认安装完成且已重新打开 PowerShell，再记录错误内容。
+## 3. 安装一个工具
 
-## 3. 创建一个练习项目
-
-1. 在文件资源管理器中打开“文档”，新建一个空文件夹 `npm-practice`。
-2. 进入该文件夹，在地址栏输入 `powershell` 并按回车，打开位于此文件夹的 PowerShell。
-3. 执行下面的命令，使用默认信息初始化项目：
+在 PowerShell 中执行：
 
 ```powershell
-npm.cmd init -y
+npm.cmd install -g @deepseek-ai/dsh --registry=https://registry.npmmirror.com
+dsh.cmd --version
 ```
 
-这里的 `-y` 表示采用默认回答。命令应在当前文件夹生成 `package.json`，用于记录项目名称、版本和所需代码包等信息。
+`-g` 表示为当前 npm 环境安装工具，之后可在不同文件夹中启动。`--registry` 只为本次安装选择 npmmirror，不会永久修改下载源。第二条命令应显示 Harness 版本号。
 
-## 4. 验证结果
+镜像只负责软件包下载；安装脚本仍可能从其他网站获取文件。出现下载失败时，先记录报错里的网址，不要直接关闭证书检查或使用来历不明的安装脚本。
 
-回到文件资源管理器，用记事本打开 `package.json`，确认能看到 `name`、`version` 等字段。完成后即可按具体项目的教程继续操作。
+## 4. 启动并验证
+
+在文件资源管理器中，新建并打开一个 `AI练习` 文件夹；在地址栏输入 `powershell` 并按回车，然后运行：
+
+```powershell
+dsh.cmd web
+```
+
+保持 PowerShell 窗口开启，在浏览器打开它打印的本机地址。看到网页只表示服务启动；模型设置和首次对话继续按 [DeepSeek Harness 手册](../deepseek-harness/index.md)完成。结束时回到 PowerShell 按 `Ctrl+C`。
+
+若找不到 `npm.cmd` 或 `dsh.cmd`，先重新打开 PowerShell；仍失败时记录完整报错。镜像没有对应版本时，对照工具官方发布信息核对，不安装同名替代包。
 
 ## 来源与验证状态
 
-- 官方资料：[安装 Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/)、[Node.js 下载](https://nodejs.org/en/download)、[npm init](https://docs.npmjs.com/cli/v11/commands/npm-init/)。
-- 资料核对日期：2026-10-21。安装器、版本检查和项目初始化均待人工验证。
+- 资料：[Node.js 下载](https://nodejs.org/en/download)、[npm 安装说明](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/)、[全局安装](https://docs.npmjs.com/downloading-and-installing-packages-globally/)、[npmmirror 镜像说明](https://npmmirror.com/)、[Harness 官方仓库](https://github.com/deepseek-ai/deepseek-harness)。
+- 核对日期：2026-10-21。安装、命令启动与无代理国内网络下载均待人工验证；未在当前电脑安装或修改 npm 配置。

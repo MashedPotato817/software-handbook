@@ -29,20 +29,20 @@ title: 软件与工具使用手册
 | [Visual Studio Code](pages/vscode/index.md) · 编辑代码与文本 | Windows 安装与文件编辑 | Windows · 待人工验证 |
 | [Python](pages/python/index.md) · 编程语言与运行环境 | 安装与运行第一个程序 | Windows · 待人工验证 |
 | [Git](pages/git/index.md) · 记录修改历史、协作管理文件 | Windows 安装、必要配置与验证 | Windows 10 / 11 · 待人工验证 |
-| [npm](pages/npm/index.md) · 管理 JavaScript 软件包 | 安装 Node.js 与 npm、首次使用 | Windows 11 · 待人工验证 |
+| [npm](pages/npm/index.md) · 安装命令行工具 | 安装 Node.js、镜像下载与启动工具 | Windows 11 · 待人工验证 |
 | [Linux（WSL）](pages/wsl/index.md) · 在 Windows 中使用 Linux | 安装 Ubuntu 与首次使用 | Windows · 待人工验证 |
 
 ## AI 工具
 
-AI 工具的安装、必要配置与入门指南。
+优先采用 npm 安装和 DeepSeek 官方 API，面向国内网络；安装、启动与模型回复均待人工验证。Codex 的 ChatGPT 登录路径仍需访问 OpenAI 服务。
 
 | 工具与用途 | 教程 | 适用系统 / 状态 |
 | --- | --- | --- |
-| [Claude Code](pages/claude-code/index.md) · AI 编程助手 | 安装、登录与首次使用 | Windows · 待人工验证 |
-| [DeepSeek Harness](pages/deepseek-harness/index.md) · AI 工作与编程助手 | Windows 安装与首次使用 | Windows 64 位预览版 · 待人工验证 |
-| [Codex / ChatGPT](pages/codex/index.md) · 编程智能体与对话助手 | Windows 安装与首次使用 | Windows · 待人工验证 |
-| [OpenCode](pages/opencode/index.md) · AI 编程助手 | 安装、连接模型与首次使用 | Windows · 待人工验证 |
-| [Hermes Agent](pages/hermes/index.md) · AI 助手 | 安装、连接模型与首次对话 | Windows 11 22H2+ · 待人工验证 |
+| [Claude Code](pages/claude-code/index.md) · AI 编程助手 | npm 安装、连接 DeepSeek 与首次使用 | Windows 11 · 待人工验证 |
+| [DeepSeek Harness](pages/deepseek-harness/index.md) · AI 工作与编程助手 | npm 安装、本地网页与首次使用 | Windows 11 · 待人工验证 |
+| [Codex / ChatGPT](pages/codex/index.md) · 编程智能体 | npm 安装、DeepSeek 或 ChatGPT 登录 | Windows 11 · 待人工验证 |
+| [OpenCode](pages/opencode/index.md) · AI 编程助手 | npm 安装、连接 DeepSeek 与首次使用 | Windows 11 · 待人工验证 |
+| [Hermes Agent](pages/hermes/index.md) · AI 助手 | 官方桌面包、连接 DeepSeek 与首次对话 | Windows 11 22H2+ · 待人工验证 |
 
 ## 参与完善
 

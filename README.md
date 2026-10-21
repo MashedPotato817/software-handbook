@@ -8,13 +8,15 @@
 
 - **常用与专业软件**：draw.io、Origin、嘉立创 EDA、OBS Studio，覆盖制图、科研数据处理、电子设计与录屏。
 - **开发工具与平台**：Visual Studio Code、Python、Git、npm、Linux（WSL），覆盖编辑器、编程环境与基础开发工具。
-- **AI 工具**：Claude Code、DeepSeek Harness、Codex、OpenCode、Hermes Agent，覆盖安装、必要设置与首次使用。
+- **AI 工具**：Claude Code、DeepSeek Harness、Codex、OpenCode、Hermes Agent，优先采用 npm 安装和 DeepSeek 官方 API，覆盖必要设置与首次使用；Hermes 保留官方桌面安装包。
 
 本轮暂不编写 Office 系列、MATLAB、AutoCAD、Proteus、Multisim、Keil 和 Adobe 系列（Photoshop / Premiere Pro）。
 
 ## 当前状态
 
 项目处于试写阶段，已有 14 篇精简入门手册草稿，具体入口见[手册首页](index.md)。内容以 Windows 安装与首次使用为主，draw.io 和嘉立创 EDA 采用网页版；各篇均待人工验证，具体环境要求见正文。
+
+AI 手册采用面向国内网络的推荐路径：npm 命令使用单次 npmmirror 镜像参数，模型优先直连 DeepSeek；Codex 同时保留 ChatGPT 官方登录路径。镜像不保证覆盖所有额外下载，ChatGPT 路径仍需访问 OpenAI 服务；无代理国内网络下的安装、启动和模型回复均待人工验证。
 
 新增手册或补充章节可使用项目级 [内容贡献工作流技能](.agents/skills/software-handbook-content-workflow/SKILL.md)，先形成带来源和验证状态的草稿，再由维护者审阅与人工验证；提交和发布按 [Git 工作流技能](.agents/skills/software-handbook-git-workflow/SKILL.md) 执行。
 
