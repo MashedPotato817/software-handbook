@@ -6,13 +6,15 @@
 
 内容范围包括 **常用与专业软件**、**开发工具与平台** 和 **AI 工具** 三大类。
 
-- **常用与专业软件**：包括但不限于 **Office**、**Adobe** 等常用软件的安装和激活，以及 **AutoCAD**、**draw.io**、**Keil**、**MATLAB** 等专业软件的安装和激活。
-- **开发工具与平台**：包括但不限于 **Visual Studio Code**、**PyCharm** 等代码编辑器与集成开发环境，以及 **Git**、**npm** 等开发工具和 **GitHub** 等平台的使用方法。
-- **AI 工具**：包括但不限于 **DeepSeek Harness**、**OpenCode**、**Codex**、**Claude Code** 等 AI 工具的使用方法，并可按实际需求扩展。
+- **常用与专业软件**：draw.io、Origin、嘉立创 EDA、OBS Studio，覆盖制图、科研数据处理、电子设计与录屏。
+- **开发工具与平台**：Visual Studio Code、Python、Git、npm、Linux（WSL），覆盖编辑器、编程环境与基础开发工具。
+- **AI 工具**：Claude Code、DeepSeek Harness、Codex、OpenCode、Hermes Agent，覆盖安装、必要设置与首次使用。
+
+本轮暂不编写 Office 系列、MATLAB、AutoCAD、Proteus、Multisim、Keil 和 Adobe 系列（Photoshop / Premiere Pro）。
 
 ## 当前状态
 
-项目处于框架建立和试写阶段，已有 [Git 手册草稿](pages/git/index.md) 和 [Codex / ChatGPT 手册草稿](pages/codex/index.md)，目前均以 Windows 安装与入门为主，待维护者修改和人工验证。上面列出的工具与平台是计划覆盖的范围，不表示对应教程已经完成。
+项目处于试写阶段，已有 14 篇精简入门手册草稿，具体入口见[手册首页](index.md)。内容以 Windows 安装与首次使用为主，draw.io 和嘉立创 EDA 采用网页版；各篇均待人工验证，具体环境要求见正文。
 
 新增手册或补充章节可使用项目级 [内容贡献工作流技能](.agents/skills/software-handbook-content-workflow/SKILL.md)，先形成带来源和验证状态的草稿，再由维护者审阅与人工验证；提交和发布按 [Git 工作流技能](.agents/skills/software-handbook-git-workflow/SKILL.md) 执行。
 
