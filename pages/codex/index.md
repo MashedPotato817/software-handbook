@@ -6,77 +6,67 @@ author: HGXdev
 
 # Codex / ChatGPT
 
-> 状态：试写稿。已于 2026-10-19 核对下方官方资料；尚未在新设备上按本文完成安装、登录和首次使用验证。
->
-> 适用环境：Windows，具体系统版本与设备要求以官方安装页面为准；最低系统构建号尚待人工核对。
->
-> 初稿：HGXdev；维护者依据官方资料修订。
+Codex 是 OpenAI 的编程智能体。本篇用 npm 安装 **Codex CLI（命令行版）**，再选择 DeepSeek 模型或 ChatGPT 官方账号登录；npm 不会安装 ChatGPT 桌面应用。
 
-## 引言
+> 适用环境：Windows 11，x64 或 ARM64，Node.js 24 LTS。本文为待人工验证的草稿；初稿：**HGXdev**，维护者依据官方资料改写。
 
-Codex 是 OpenAI 提供的编程智能体，适合处理项目中的代码和开发任务；ChatGPT 适合问答、写作和资料整理。
+## 1. 准备并安装
 
-本篇介绍 ChatGPT 桌面应用的官方安装与账号登录路径。应用中可以选择 ChatGPT 进行对话，也可以选择 Codex 处理开发任务；桌面应用入口与 Codex CLI、IDE 扩展应区分。
-
-目标是完成安装、登录，再分别检查需要使用的功能。本篇不涉及第三方模型服务或 CC Switch 配置。
-
-## 正文
-
-### 1. 准备环境
-
-- 确认设备满足官方安装页面列出的系统要求。
-- 准备可登录的 ChatGPT 账号；尚无账号时按官方登录页面提示注册。
-- 确认网络可以访问官方安装入口与 OpenAI 服务。安装下载和应用登录使用的服务不同，应分别检查访问情况。
-
-### 2. 从官方入口安装
-
-打开 [OpenAI 官方 Windows 应用说明](https://learn.chatgpt.com/docs/windows/windows-app)，点击其中的 Windows 下载入口，运行下载的安装程序并按提示完成安装。需要管理员批准或 Microsoft 账号时，按实际安装提示处理。
-
-根据[官方 Windows 部署说明](https://learn.chatgpt.com/docs/enterprise/windows-deployment)，安装或更新时可能出现 Microsoft Store 组件，但用户无需自行浏览商店。具体流程以安装提示为准，是否打开商店不作为安装成功的判断条件。
-
-如果已经使用 Windows 的 `winget`，也可以在 PowerShell 中运行官方文档提供的命令；它与上面的下载安装路径任选一种即可：
+先按 [npm 手册](../npm/index.md)准备 Node.js 和 npm，在 PowerShell 中运行：
 
 ```powershell
-winget install --id 9PLM9XGG6VKS -s msstore
+npm.cmd install -g @openai/codex --registry=https://registry.npmmirror.com
+codex.cmd --version
 ```
 
-按实际提示完成后，从开始菜单打开应用。下载入口和更新信息以官方页面为准。
+看到版本号后，新建并打开 `AI练习` 文件夹，在资源管理器地址栏输入 `powershell` 并回车。后续启动命令都在这个窗口中运行。
 
-### 3. 登录并选择功能
+## 2. 选择模型与认证路径
 
-1. 打开应用，按界面提示登录 ChatGPT 账号。
-2. 如需普通问答，选择 ChatGPT，再选择 Chat。
-3. 如需开发任务，从 ChatGPT 下拉菜单中选择 Codex。按官方快速开始的流程创建项目或打开文件夹，让任务有明确的工作位置。
+两条路径任选一条，然后完成第 3 节。**安装用镜像不代表模型服务也可直接访问。**
 
-上述入口依据[官方快速开始](https://learn.chatgpt.com/docs/quickstart?setup=app)整理，界面名称可能随版本变化。若当前账号或客户端没有对应入口，先记录应用版本、界面和提示，再对照官方资料核对；不要直接判断为安装失败。
+### 路径 A：DeepSeek 国内模型
 
-### 4. 验证
+准备 [DeepSeek 开放平台](https://platform.deepseek.com/)的 API key 和可用 API 余额。此路径由 DeepSeek 提供模型并按 API 计费，不消耗 ChatGPT 套餐额度。
 
-安装与登录完成后，按实际要使用的功能检查：
+1. 首次安装时运行 `codex.cmd`，到欢迎或登录界面后按 `Ctrl+C` 退出，使 Codex 创建自己的配置目录；已有配置时无需重复此步。
+2. 完全退出正在运行的 Codex CLI、IDE 会话和 ChatGPT 桌面应用，避免它们继续读取旧设置。在 PowerShell 执行 [DeepSeek 官方接入教程](https://api-docs.deepseek.com/quick_start/agent_integrations/codex/)提供的配置命令：
 
-| 检查对象 | 操作 | 预期结果 |
-| --- | --- | --- |
-| 应用与账号 | 从开始菜单打开应用并完成登录 | 应用正常打开，能够进入新对话界面 |
-| ChatGPT 对话 | 选择 ChatGPT → Chat，发送“请用一句话介绍你能做什么” | 收到正常文字回复 |
-| Codex 开发任务 | 选择 Codex，打开一个测试文件夹，发送“只列出当前文件夹中的文件；若为空就说明为空，不要修改文件” | 返回与目录内容相符的结果，目录内容未被修改 |
+```powershell
+irm https://cdn.deepseek.com/api-docs/codex-deepseek-setup-en.ps1 | iex
+```
 
-只使用 ChatGPT 时，完成前两项即可；需要 Codex 时，再完成第三项。能够打开应用不等于登录或任务执行成功。
+3. 菜单选择 **1**（`deepseek-flash`），按脚本提示填写自己的 DeepSeek API key；确认配置完成，再运行 `codex.cmd`。
+4. 查看界面或输入 `/status`，确认提供方和模型是 DeepSeek，再进行练习。
 
-验证后请记录 Windows 版本、应用版本、验证日期、实际使用的功能和结果。本文当前没有这些人工复现记录，不能据此认定安装流程已经验证。
+该命令会下载并运行 DeepSeek 的配置脚本，修改 `%USERPROFILE%\.codex\config.toml` 等设置，同一配置也会影响桌面端和 IDE。脚本将旧配置备份到 `%USERPROFILE%\.codex\backup-deepseek\`，其中可能含密钥，请妥善保管。恢复时先退出相关客户端，再运行同一命令选择 **9**，按提示确认恢复脚本执行前的配置。
 
-### 5. 遇到问题时
+### 路径 B：ChatGPT 官方登录
 
-- **安装下载失败**：记录安装入口、错误提示和时间，检查该下载入口及 Microsoft 分发服务是否可访问。
-- **登录或加载失败**：检查账号提示和 OpenAI 服务访问情况；保留错误信息，区分账号、网络与安装问题。
-- **Codex 任务未成功**：确认选择了 Codex 和正确的测试文件夹，检查任务记录中的提示。普通聊天回复不能替代 Codex 任务验证。
+需要具有 Codex 使用权限的 ChatGPT 账号，按账号套餐和额度使用。此路径仍需访问 OpenAI 登录与模型服务，并满足其服务地区要求，不属于国内直连模型路径。
 
-## 参考资料
+使用过路径 A 时，先按上面的恢复步骤选择 **9**，重新打开 PowerShell。确认原来使用的配置已恢复后，执行：
 
-- [OpenAI：Windows 桌面应用](https://learn.chatgpt.com/docs/windows/windows-app)：官方安装入口、Windows 使用说明与可选的 winget 命令。
-- [OpenAI：快速开始](https://learn.chatgpt.com/docs/quickstart?setup=app)：账号登录、ChatGPT / Codex 功能选择和首次任务。
-- [OpenAI：Windows 部署说明](https://learn.chatgpt.com/docs/enterprise/windows-deployment)：安装方式与 Microsoft Store 组件说明。
+```powershell
+codex.cmd login
+codex.cmd
+```
 
-## 简单注释
+按浏览器提示完成 **Sign in with ChatGPT**，返回终端；输入 `/status`，确认是预期的 ChatGPT 账号和 OpenAI 模型。如果恢复后仍是其他提供方，先核对原配置，不把登录成功当作已切换模型。
 
-- **ChatGPT 账号**：本篇采用官方账号登录流程；其他认证或第三方服务配置不在本文范围内。
-- **待验证**：资料核对、链接检查和站点构建不等于实际完成软件安装或任务执行。
+只需要 ChatGPT 桌面应用时，使用 [OpenAI 官方 Windows 安装入口](https://learn.chatgpt.com/docs/windows/windows-app)；本篇的 npm 命令安装的是 Codex CLI。
+
+## 3. 首次使用与排错
+
+确认当前目录是 `AI练习`，发送：“只列出当前文件夹中的文件；若为空就说明为空，不要修改文件或运行其他程序。”
+
+确认结果与文件资源管理器一致，目录未变化，没有认证或额度报错。记录所选路径、模型、版本和结果；路径 A 可同时在 DeepSeek 平台核对调用记录。
+
+- 下载失败：记录网址和报错，镜像不保证覆盖额外文件下载。
+- 路径 A 报错：核对 DeepSeek API key、余额及配置脚本输出。
+- 路径 B 登录失败：记录官方账号提示，分别核对 OpenAI 登录页和模型服务访问；不使用 DeepSeek 密钥替代 ChatGPT 登录。
+
+## 来源与验证状态
+
+- 官方资料：[Codex CLI](https://learn.chatgpt.com/docs/codex/cli)、[认证与状态检查](https://learn.chatgpt.com/docs/auth)、[DeepSeek 接入、备份与恢复](https://api-docs.deepseek.com/quick_start/agent_integrations/codex/)、[npmmirror](https://npmmirror.com/)。
+- 核对日期：2026-10-21；官方 npm 与镜像当前均为 `0.163.0`。未运行配置脚本；安装、启动、两条路径的模型回复和无代理国内网络验收均待人工验证。

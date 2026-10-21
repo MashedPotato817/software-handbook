@@ -5,47 +5,49 @@ category: AI 工具
 
 # OpenCode
 
-OpenCode 是 Anomaly 维护的开源 AI 编程助手，可以连接不同模型来解释和编写代码。本篇介绍 Windows 桌面版的安装与首次对话。
+OpenCode 是 Anomaly 的开源 AI 编程助手。本篇用 npm 安装 OpenCode 2 命令行版，连接 DeepSeek 官方 API，完成第一次对话。
 
-> 适用环境：Windows x64 或 ARM64 桌面版。资料按当前 OpenCode 2 核对；本文为待人工验证的草稿，实际安装版本待补。
+> 适用环境：Windows 11，x64 或 ARM64，Node.js 24 LTS。本文为面向国内网络的推荐路径；Windows npm 安装尚待实测。
 
-## 1. 准备模型访问条件
+## 1. 准备
 
-- 准备一个 OpenCode 支持的模型提供方账号，并确认可用模型、授权方式与额度。
-- 根据所选提供方，可能需要浏览器登录或 API key。API key 是调用模型的密钥，应从该提供方的官方控制台获取。
-- 软件可下载安装，不代表所连接的模型一定免费或已经可用；不要把普通聊天账号密码当作 API key。
+- 按 [npm 手册](../npm/index.md)准备 Node.js 和 npm。
+- 在 [DeepSeek 开放平台](https://platform.deepseek.com/)创建 API key，确认 API 余额可用；模型由 DeepSeek 提供，调用按其 API 计费。
+- 新建一个 `AI练习` 文件夹，作为本次练习目录。
 
-## 2. 下载并安装
+## 2. npm 安装并启动
 
-1. 打开 [OpenCode 官方下载页](https://opencode.ai/download)，找到 **OpenCode Desktop**。
-2. 在 Windows 的“设置 → 系统 → 关于”查看“系统类型”，选择对应的 **Windows (x64)** 或 **Windows (ARM64)** 下载入口。
-3. 运行下载的安装包，按提示安装，再从开始菜单打开 OpenCode。
+在开始菜单打开 PowerShell，运行：
 
-## 3. 连接提供方并选择模型
-
-1. 在应用的提供方连接入口中，选择自己已有访问条件的模型提供方。
-2. 按界面提供的方式完成浏览器授权，或填写该提供方的 API key。
-3. 在模型选择区域选择已连接提供方下的可用模型，确认界面显示所选模型。
-
-桌面连接入口的位置与具体按钮名称待人工核对。
-
-## 4. 首次对话并验证
-
-打开桌面应用的对话输入区域，发送：
-
-```text
-请用中文解释“项目文件夹”是什么，限两句话。不要读取或修改文件，不要运行命令。
+```powershell
+npm.cmd install -g @opencode/cli --registry=https://registry.npmmirror.com
+opencode.cmd --version
 ```
 
-确认以下结果：
+看到版本号后，在文件资源管理器中打开 `AI练习`，在地址栏输入 `powershell` 并回车，运行：
 
-1. 收到完整回复，没有密钥、登录、余额或模型不可用的报错。
-2. 界面仍显示刚才选择的模型；记录所用提供方和软件版本，方便以后排查。
+```powershell
+opencode.cmd
+```
 
-完成后可确认基本模型连接与对话可用；本篇尚不验证代码修改能力。
+## 3. 连接 DeepSeek
+
+1. 在 OpenCode 输入框输入 `/connect`，搜索并选择 **DeepSeek**，填写自己的 DeepSeek API key。
+2. 再输入 `/models`，选择 DeepSeek 下当前账号可用的模型。
+3. 确认界面显示刚才选择的 DeepSeek 模型。密钥只填在提供方连接流程，不发到聊天框中。
+
+## 4. 首次对话与排错
+
+发送：“请用中文解释项目文件夹是什么，限两句话。不要读取或修改文件，不要运行命令。”
+
+确认收到完整回复，没有认证、余额或模型不可用报错；在 DeepSeek 平台核对调用记录。退出后，再次使用时在练习文件夹中运行 `opencode.cmd`。
+
+- 找不到命令：重新打开 PowerShell，再检查版本。
+- 下载或安装失败：记录网址与错误，镜像不保证覆盖额外下载；对照官方 Windows CLI 下载说明确认，不改用同名 npm 包。
+- 模型报错：检查 DeepSeek 密钥、API 余额和模型选择；版本号不是模型连接验证。
 
 ## 来源与验证状态
 
-- 官方资料：[下载页](https://opencode.ai/download)、[OpenCode 2 入门](https://opencode.ai/v2/docs/)、[提供方连接](https://opencode.ai/v2/docs/providers/)、[模型选择](https://opencode.ai/v2/docs/models/)。
-- 产品身份核对：[Anomaly 官方仓库](https://github.com/anomalyco/opencode)。资料核对日期：2026-10-21。
-- 安装、桌面连接入口、账号授权和首次对话均待人工验证；尚无实际操作记录。
+- 官方资料：[OpenCode 2 安装](https://opencode.ai/v2/docs/)、[提供方与模型选择](https://opencode.ai/v2/docs/providers/)、[DeepSeek 接入](https://api-docs.deepseek.com/guides/coding_agents/)、[Anomaly 官方仓库](https://github.com/anomalyco/opencode)。
+- 核对日期：2026-10-21；官方 npm 与 npmmirror 当前均为 `@opencode/cli 2.1.2`，发布包含 Windows x64/ARM64 平台包和安装逻辑。官网仍有“Windows package managers are not supported”提示，与包信息不一致；本文 npm 路径保留待实测状态。
+- 安装、启动、模型回复和无代理国内网络全过程均待人工验证，未以发布包存在代替安装成功。
